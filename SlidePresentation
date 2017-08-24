@@ -1,0 +1,52 @@
+Coursera Data Scientists
+Capstone: Final Course Project
+========================================================
+author: William Roth
+date: August 13, 2017
+autosize: true
+
+Introduction
+========================================================
+
+The goal of this exercise is to create a product to highlight the prediction algorithm that you have built and to provide an interface that can be accessed by others. For this project you must submit:
+
+1.  A Shiny app that takes as input a phrase (multiple words) in a text box input and outputs a prediction of the next word.
+
+2.  A slide deck consisting of no more than 5 slides created with R Studio Presenter (https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations) pitching your algorithm and app as if you were presenting to your boss or an investor.
+
+- [shiny App] -
+- [Githib Repo] - 
+- [Coursera Data Scientists Capstone details] - https://www.coursera.org/learn/data-science-project/peer/EI1l4/final-project-submission
+
+
+Getting & Cleaning the Data - Initial Steps
+========================================================
+
+Before building the word prediction algorith, data is first processed and cleaned as the steps below:
+
+- A subset of the original data was sampled from the three sources (blogs,twitter and news) which is then merged into one.
+- Next, data cleaning is done by conversion to lowercase, strip white space, and removing punctuation and numbers.
+- The corresponding n-grams are then created (Quadgram,Trigram and Bigram).
+- Next, the term-count tables are extracted from the N-Grams and sorted according to the frequency in descending order.
+- Lastly, the n-gram objects are saved as R-Compressed files (.RData files). 
+
+
+Word Prediction Model
+========================================================
+
+The prediction model for next word is based on the Katz Back-off algorithm. Explanation of the next word prediction flow is as below:
+
+- Compressed data sets containing descending frequency sorted n-grams are first loaded.
+- User input words are cleaned in the similar way as before prior to prediction of the next word.
+- For prediction of the next word, Quadgram is first used (first three words of Quadgram are the last three words of the user provided sentence).
+- If no Quadgram is found, back off to Trigram (first two words of Trigram are the last two words of the sentence).
+- If no Trigram is found, back off to Bigram (first word of Bigram is the last word of the sentence)
+- If no Bigram is found, back off to the most common word with highest frequency 'the' is returned.
+
+
+Shiny Application
+========================================================
+
+Based on the prediction model, a shiny app was created which allows users to type in a few words to begin the prediction of the next word. Please see the link below to demo the shiny app:
+
+Here is the link to demo the app:
